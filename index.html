@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Ziqi Tang" />
+
+
+<title>My Final Project</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Spatial Data Science Final Project</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">My Final Project</h1>
+<h4 class="author">Ziqi Tang</h4>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Clearly stated background and questions / hypotheses / problems being addressed. Sets up the analysis in an interesting and compelling way.</p>
+</div>
+<div id="materials-and-methods" class="section level1">
+<h1>Materials and methods</h1>
+<p>Narrative: Clear narrative description of the data sources and methods. Includes data from at least two sources that were integrated / merged in R.</p>
+<p>Code: The code associated with the project is well organized and easy to follow. Demonstrates mastery of R graphics and functions.</p>
+<p>Data: The underlying data are publicly accessible via the web and downloaded/accessed within the Rmd script. If you want to use your own data, you must make it available on a website (e.g. Figshare) so that others are able to re-run your code.</p>
+<p>You can do bullets like this:</p>
+<ul>
+<li>The first most important thing</li>
+<li>The second most important thing</li>
+<li>The third most important thing</li>
+</ul>
+<p>You can do numbers like this:</p>
+<ol style="list-style-type: decimal">
+<li>The first most important thing</li>
+<li>The second most important thing</li>
+<li>The third most important thing</li>
+</ol>
+<p>See <a href="http://rmarkdown.rstudio.com/">http://rmarkdown.rstudio.com/</a> for all the amazing things you can do.</p>
+<p>Here’s my first code chunk.</p>
+<pre class="r"><code>library(latex2exp)
+library(scico)
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(sp)
+library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.3.5     ✔ purrr   0.3.4
+## ✔ tibble  3.1.6     ✔ stringr 1.4.0
+## ✔ tidyr   1.1.4     ✔ forcats 0.5.1
+## ✔ readr   2.1.0</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(sf)</code></pre>
+<pre><code>## Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1</code></pre>
+<p>Load any required packages in a code chunk (you may need to install some packages):</p>
+<pre class="r"><code>library(readxl)
+provinceNight &lt;- read_excel(&quot;provinceNight.xls&quot;)</code></pre>
+<pre class="r"><code>ggplot(provinceNight) +
+ geom_line(aes(year,mean,color = province)) +
+ theme(legend.position=&quot;bottom&quot;,
+        legend.text=element_text(size=7),
+        legend.title = element_blank(),
+        legend.background = element_rect(fill = &quot;#f2eadf&quot;,
+                                         color = &quot;grey55&quot;,
+                                         size = 2)) +
+  labs(x = &quot; &quot;,y = &quot;mean value of nighttime light value&quot;,title = &quot;Changes of nighttime average lighting values in China&#39;s provinces&quot;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>ggsave(&quot;change of nighttime value.png&quot;, 
+       width = 40, height = 20, device = png)</code></pre>
+<pre class="r"><code>read_sf(&quot;NineSegment.geojson&quot;) -&gt; cn
+read_sf(&#39;data/AdministrativeDivisions/province.shp&#39;) -&gt; provmap
+read_sf(&#39;data/AdministrativeDivisions/市.shp&#39;) -&gt; citymap
+read_sf(&#39;data/AdministrativeDivisions/县.shp&#39;) -&gt; countymap
+read_sf(&quot;data/Coastline/海岸线.shp&quot;) -&gt; hax
+provmap</code></pre>
+<pre><code>## Simple feature collection with 35 features and 4 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 73.50114 ymin: 6.323421 xmax: 135.0885 ymax: 53.5609
+## Geodetic CRS:  CGCS_2000
+## # A tibble: 35 × 5
+##    省代码 省           类型   Field                                     geometry
+##     &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;  &lt;dbl&gt;                           &lt;MULTIPOLYGON [°]&gt;
+##  1 110000 Beijing      直辖市     0 (((116.6753 41.0401, 116.6762 41.04006, 116…
+##  2 120000 Tianjin      直辖市     0 (((117.4438 40.25101, 117.4561 40.24615, 11…
+##  3 130000 Hebei        省         0 (((118.8539 39.10692, 118.8493 39.10679, 11…
+##  4 140000 Shanxi       省         0 (((114.1371 40.73445, 114.1386 40.73295, 11…
+##  5 150000 Neimeng      自治区     0 (((121.4981 53.32607, 121.5012 53.32112, 12…
+##  6 150000 zhongchao    不统计     0 (((124.3585 39.94443, 124.3583 39.94437, 12…
+##  7 210000 Liaoning     省         0 (((121.0345 38.87063, 121.0353 38.87017, 12…
+##  8 220000 Jilin        省         0 (((130.5655 42.45006, 130.565 42.44991, 130…
+##  9 230000 Heilongjiang 省         0 (((123.4025 53.53506, 123.4047 53.53504, 12…
+## 10 310000 Shanghai     直辖市     0 (((121.4585 31.75982, 121.4593 31.75975, 12…
+## # … with 25 more rows</code></pre>
+<pre class="r"><code>provinceNight %&gt;% 
+  dplyr::filter(year == 2020) %&gt;% 
+  dplyr::select(-year) %&gt;% 
+  left_join(provmap) %&gt;% 
+  st_sf() -&gt; df3</code></pre>
+<pre><code>## Joining, by = &quot;省&quot;</code></pre>
+<pre class="r"><code>df3</code></pre>
+<pre><code>## Simple feature collection with 37 features and 13 fields (with 1 geometry empty)
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 73.50114 ymin: 6.323421 xmax: 135.0885 ymax: 53.5609
+## Geodetic CRS:  CGCS_2000
+## # A tibble: 37 × 14
+##    provinceCode 省           mean     sum   Std minimum maximum `Nonzero pixel …
+##           &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
+##  1       340000 Anhui      1.11    7.12e5  4.46     0     112.            120152
+##  2       820000 Macau     71.8     4.60e3 54.6     13.4   288.                64
+##  3       110000 Beijing    5.12    4.36e5 11.0      0     313.             39447
+##  4       500000 Chongqing  0.707   2.68e5  3.61     0     169.             40379
+##  5       350000 Fujian     1.13    6.08e5  4.46     0     153.             94516
+##  6       620000 Gansu      0.0998  2.16e5  1.40     0     306.             43199
+##  7       440000 Guangdong  2.10    1.59e6  6.11     0     276.            219480
+##  8       450000 Guangxi    0.332   3.43e5  2.25     0      90.1            69347
+##  9       520000 Guizhou    0.337   2.67e5  2.18     0      99.5            55731
+## 10       460000 Hainan     0.811   1.15e5  3.72     0     150.             22558
+## # … with 27 more rows, and 6 more variables:
+## #   Number of non missing pixels &lt;dbl&gt;, province &lt;chr&gt;, 省代码 &lt;dbl&gt;,
+## #   类型 &lt;chr&gt;, Field &lt;dbl&gt;, geometry &lt;MULTIPOLYGON [°]&gt;</code></pre>
+<pre class="r"><code>df3 %&gt;% 
+  ggplot() + 
+  geom_sf(aes(fill = mean), size = 0.01, 
+          color = &quot;white&quot;) + 
+  geom_sf(data = cn, size = 0.5, 
+          color = &quot;black&quot;, fill = NA) +
+  geom_sf(data = hax, color = &quot;#0055AA&quot;) + 
+  stat_sf_coordinates(geom = &quot;text&quot;, color = &quot;gray60&quot;,
+                      aes(label = province),
+                      size = 0.9) +
+  coord_sf(crs = &quot;+proj=lcc +lat_1=30 +lat_2=62 +lat_0=0 +lon_0=105 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs&quot;,
+           xlim = c(-3500000, 3090000)) + 
+  scico::scale_fill_scico(
+    palette = &quot;lajolla&quot;,
+    direction = -1,
+    trans = &quot;log10&quot;,
+    breaks = c(0.01, 0.6, 25),
+    labels = c(&quot;Dim&quot;, latex2exp::TeX(&quot;$\\leftarrow$ Night light brightness  $\\rightarrow$&quot;), &quot;Bright&quot;),
+    name = &quot;Provinces of China in 2020\n
+Average night light brightness&quot;,
+    guide = guide_colorbar(
+      direction = &quot;horizontal&quot;,
+      barheight = unit(3, units = &quot;mm&quot;),
+      barwidth = unit(60, units = &quot;mm&quot;),
+      draw.ulim = FALSE,
+      ticks.colour = &quot;transparent&quot;,
+      title.position = &#39;top&#39;,
+      title.hjust = 0.5,
+      label.hjust = 0.5
+    )
+  ) + 
+  scale_x_continuous(expand = c(0.02, 0.02)) +
+  scale_y_continuous(expand = c(0.02, 0.02))</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_text).</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Add any additional processing steps here.</p>
+</div>
+<div id="results" class="section level1">
+<h1>Results</h1>
+<p>[~200 words]</p>
+<p>Tables and figures (maps and other graphics) are carefully planned to convey the results of your analysis. Intense exploration and evidence of many trials and failures. The author looked at the data in many different ways before coming to the final presentation of the data.</p>
+<p>Show tables, plots, etc. and describe them.</p>
+</div>
+<div id="conclusions" class="section level1">
+<h1>Conclusions</h1>
+<p>[~200 words]</p>
+<p>Clear summary adequately describing the results and putting them in context. Discussion of further questions and ways to continue investigation.</p>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<p>All sources are cited in a consistent manner</p>
+</div>
+
+<!-- give the footer some space -->
+<br/>
+<br/>
+
+<footer id="site-footer">
+  <div id="footer1">
+  This website is a project for Adam Wilson's <a href="https://wilsonlab.io/GEO511"><i> Spatial Data Science (GEO511) </i></a>Course at the University at Buffalo
+  </div>
+  <div id="footer2">
+  <a rel="license" property="http://creativecommons.org/ns#license"
+  href="http://creativecommons.org/licenses/by/4.0/" ><img src="img/cc-by.svg" alt="cc-by"/></a> 
+  </div>
+</footer>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+
+</body>
+</html>
