@@ -3,11 +3,11 @@ title: "My Final Project"
 author: Ziqi Tang
 ---
 
-# Introduction
+# Introduction (Comment 1: I think that the Introduction needed to be 200 words or more.)
 
 Clearly stated background and questions / hypotheses / problems being addressed. Sets up the analysis in an interesting and compelling way.
 
-# Materials and methods
+# Materials and methods (Comment 2: Make sure that when you begin the methodology, you include explaining your data and everything as explained in the Project First Draft. Really interesting code and project, however!)
 
 Narrative: Clear narrative description of the data sources and methods. Includes data from at least two sources that were integrated / merged in R.
 
@@ -128,6 +128,6 @@ Show tables, plots, etc. and describe them.
 
 Clear summary adequately describing the results and putting them in context. Discussion of further questions and ways to continue investigation.
 
-# References
+# References (Comment 3: Like I said from the first two comments - just input your information once you have finished that portion, but your code looks good overall! Very interesting project.)
 
 All sources are cited in a consistent manner
